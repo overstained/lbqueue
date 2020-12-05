@@ -1,15 +1,16 @@
 package queue.log;
 
+import lombok.experimental.UtilityClass;
+
 import java.io.EOFException;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
+@UtilityClass
 public class Utils {
 
-    private Utils() {}
-
-    public static void readFullyOrFail(FileChannel channel, ByteBuffer destinationBuffer, long position,
+    public void readFullyOrFail(FileChannel channel, ByteBuffer destinationBuffer, long position,
                                        String description) throws IOException {
         if (position < 0) {
             throw new IllegalArgumentException("The file channel position cannot be negative, but it is " + position);
@@ -23,7 +24,7 @@ public class Utils {
         }
     }
 
-    public static void readFully(FileChannel channel, ByteBuffer destinationBuffer, long position) throws IOException {
+    public void readFully(FileChannel channel, ByteBuffer destinationBuffer, long position) throws IOException {
         if (position < 0) {
             throw new IllegalArgumentException("The file channel position cannot be negative, but it is " + position);
         }
